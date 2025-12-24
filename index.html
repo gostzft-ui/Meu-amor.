@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Meu Amor</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #ff5fa2, #ffd1dc);
+  color: #fff;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* FUNDO */
+.particula {
+  position: fixed;
+  bottom: -20px;
+  font-size: 18px;
+  animation: subir linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes subir {
+  from { transform: translateY(0); }
+  to { transform: translateY(-120vh); }
+}
+
+.tela {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  width: 280px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 35px;
+  border-radius: 12px;
+  border: none;
+  background: #ffd700;
+  color: #5b2c83;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+video {
+  width: 360px;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.aviso {
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+section {
+  padding: 60px 20px;
+}
+
+.galeria img {
+  width: 220px;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+.box {
+  background: rgba(0,0,0,0.25);
+  border-radius: 15px;
+  padding: 15px 20px;
+  min-width: 110px;
+  box-shadow: 0 0 15px currentColor;
+}
+
+.brilho {
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px currentColor; }
+  to { box-shadow: 0 0 25px currentColor; }
+}
+
+#videos, #frase, #site { display: none; }
+</style>
+</head>
+
+<body>
+
+<script>
+/* ESTRELAS E CORAÇÕES */
+for(let i=0;i<35;i++){
+  const p=document.createElement("div");
+  p.className="particula";
+  p.innerHTML=Math.random()>0.5?"⭐":"💖";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(p);
+}
+</script>
+
+<!-- CHARADA -->
+<div id="login" class="tela">
+  <h1>✨ Charada do Amor ✨</h1>
+  <p>
+    Uma princesa seguiu lanternas.<br>
+    Outra acreditou nos sonhos mesmo na lama.
+  </p>
+  <input id="senha" placeholder="Resposta">
+  <button onclick="verificar()">Continuar</button>
+</div>
+
+<!-- VIDEOS DA CHARADA -->
+<div id="videos" class="tela">
+  <video id="v1" muted onclick="ativarSom(this)">
+    <source src="video/video.mp4">
+  </video>
+
+  <video id="v2" muted style="display:none" onclick="ativarSom(this)">
+    <source src="video/video3.mp4">
+  </video>
+
+  <div class="aviso">🔊 Clique no vídeo para ativar o som</div>
+</div>
+
+<!-- FRASE -->
+<div id="frase" class="tela">
+  <h1>Você é a minha Evangeline ✨</h1>
+  <button onclick="entrarSite()">Continuar</button>
+</div>
+
+<!-- SITE -->
+<div id="site">
+
+<section>
+<h1>Meu Amor 🤍</h1>
+<p>Esse site é só nosso. Um cantinho pra guardar tudo aquilo que faz o coração bater mais forte quando penso em você.</p>
+</section>
+
+<section class="galeria">
+<h2>Nossos Momentos 📸</h2>
+<img src="fotos/foto1.jpg">
+<img src="fotos/foto2.jpg">
+<img src="fotos/foto3.jpg">
+<img src="fotos/foto4.jpg">
+<img src="fotos/foto5.jpg">
+<img src="fotos/foto6.jpg">
+<img src="fotos/foto7.jpg">
+<img src="fotos/foto8.jpg">
+<img src="fotos/foto9.jpg">
+<img src="fotos/foto10.jpg">
+</section>
+
+<section>
+<h2>🎥 Um Vídeo Nosso</h2>
+<video controls>
+  <source src="video/lembranca.mp4">
+</video>
+</section>
+
+<section>
+<h2>🎶 Nossa Trilha Sonora</h2>
+<iframe style="border-radius:12px"
+  src="https://open.spotify.com/embed/playlist/0GKNsELBWY6QhXG5dWOUo7"
+  width="80%" height="380" frameborder="0"
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+</section>
+
+<section>
+<h2>⏳ Tempo juntos</h2>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:15px">
+  <div class="box"><span id="anos">0</span><small>Anos</small></div>
+  <div class="box"><span id="meses">0</span><small>Meses</small></div>
+  <div class="box"><span id="dias">0</span><small>Dias</small></div>
+  <div class="box"><span id="horas">0</span><small>Horas</small></div>
+  <div class="box"><span id="minutos">0</span><small>Minutos</small></div>
+  <div class="box"><span id="segundos">0</span><small>Segundos</small></div>
+</div>
+</section>
+
+<section>
+<p style="max-width:700px;margin:auto;font-size:1.2em;line-height:1.6;">
+Meu amor, passar datas importantes ao seu lado faz tudo valer a pena.
+Você é minha casa, meu abrigo e meu lugar seguro.
+Cada detalhe seu me faz sorrir.
+Obrigado por existir na minha vida.
+Eu te amo 🤍
+</p>
+</section>
+
+</div>
+
+<script>
+const senhaCorreta = "enrolados e a princesa e o sapo";
+
+const login = document.getElementById("login");
+const videos = document.getElementById("videos");
+const frase = document.getElementById("frase");
+const site = document.getElementById("site");
+
+const v1 = document.getElementById("v1");
+const v2 = document.getElementById("v2");
+
+const anosEl = document.getElementById("anos");
+const mesesEl = document.getElementById("meses");
+const diasEl = document.getElementById("dias");
+const horasEl = document.getElementById("horas");
+const minutosEl = document.getElementById("minutos");
+const segundosEl = document.getElementById("segundos");
+
+function ativarSom(v){
+  v.muted=false;
+  v.play();
+}
+
+function verificar(){
+  if(senha.value.toLowerCase().trim() === senhaCorreta){
+    login.style.display="none";
+    videos.style.display="flex";
+    v1.play();
+    v1.onended=()=>{
+      v1.style.display="none";
+      v2.style.display="block";
+      v2.play();
+    };
+    v2.onended=()=>{
+      videos.style.display="none";
+      frase.style.display="flex";
+    };
+  } else alert("Ainda não é essa a magia ✨");
+}
+
+function entrarSite(){
+  frase.style.display="none";
+  site.style.display="block";
+}
+
+const inicio = new Date(2025,2,27,15,30);
+const cores = ["#ffd700","#ff6b6b","#48dbfb","#1dd1a1","#f368e0","#54a0ff","#c8d6e5","#feca57","#ff9ff3","#00d2d3","#5f27cd","#10ac84"];
+
+setInterval(()=>{
+  const agora = new Date();
+
+  let anos = agora.getFullYear() - inicio.getFullYear();
+  let meses = agora.getMonth() - inicio.getMonth();
+  let dias = agora.getDate() - inicio.getDate();
+
+  if(dias < 0){ meses--; dias += 30; }
+  if(meses < 0){ anos--; meses += 12; }
+
+  const diff = agora - inicio;
+
+  anosEl.innerText = anos;
+  mesesEl.innerText = meses;
+  diasEl.innerText = dias;
+  horasEl.innerText = Math.floor(diff/3600000)%24;
+  minutosEl.innerText = Math.floor(diff/60000)%60;
+  segundosEl.innerText = Math.floor(diff/1000)%60;
+
+  document.querySelectorAll(".box").forEach(b=>{
+    b.style.color = cores[meses%12];
+    b.classList.add("brilho");
+  });
+
+  /* DATAS ESPECIAIS */
+  if((agora.getDate()==7 && agora.getMonth()==9) || (agora.getDate()==21 && agora.getMonth()==8)){
+    for(let i=0;i<20;i++){
+      const f=document.createElement("div");
+      f.className="particula";
+      f.innerHTML="🎆";
+      f.style.left=Math.random()*100+"%";
+      f.style.animationDuration="6s";
+      document.body.appendChild(f);
+    }
+  }
+},1000);
+</script>
+
+</body>
+</html>
